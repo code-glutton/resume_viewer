@@ -4,6 +4,15 @@ import './general.css';
 
 class Header extends Component{
     render(){
+        if(this.props.data){
+            var name = this.props.data.name;
+            var occupation = this.props.data.occupation;
+            var description = this.props.data.description;
+            var city = this.props.data.address.city;
+            var socials = this.props.data.social.map(function(network){
+                return <a href={network.url} key={network.name}><i className={network.className} aria-hidden="true"></i></a>
+            })
+        }
         return(
             <header className="s-header">
                 <div className="row s-header__nav-wrap">
@@ -27,21 +36,14 @@ class Header extends Component{
 
                 <div className="s-hero__content-about">
 
-                    <h1>I'm Jonathan Doe.</h1>
+                    <h1>I'm {name}</h1>
 
                     <h3>
-                    I'm a Manila based <span>graphic designer</span>, <span>illustrator</span> and <span>webdesigner</span> creating awesome and
-                    effective visual identities for companies of all sizes around the globe. Let's <a className="smoothscroll" href="#about">start scrolling</a>
-                    and learn more <a className="smoothscroll" href="#about">about me</a>.
+                    I'm a {city} based <span>{occupation}</span> {description}
                     </h3>
 
                     <div className="s-hero__content-social">
-                        <a href="#0"><i className="fab fa-facebook-square" aria-hidden="true"></i></a>
-                        <a href="#0"><i className="fab fa-twitter" aria-hidden="true"></i></a>
-                        <a href="#0"><i className="fab fa-instagram" aria-hidden="true"></i></a>
-                        <a href="#0"><i className="fab fa-dribbble" aria-hidden="true"></i></a>
-                        <a href="#0"><i className="fab fa-behance" aria-hidden="true"></i></a>
-                        <a href="#0"><i className="fab fa-linkedin" aria-hidden="true"></i></a>
+                        {socials}
                     </div>
 
                 </div>
